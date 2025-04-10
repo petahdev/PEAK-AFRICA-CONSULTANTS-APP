@@ -29,11 +29,41 @@
   border: none !important;
 }
 
+
+ /* Watermark styling */
+ .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg); /* Inclining the text */
+            font-size: 5rem; /* Font size */
+            font-family: 'Arial', sans-serif; /* Professional font */
+            color: rgba(0, 123, 255, 0.15); /* Light blue color */
+            letter-spacing: 10px;
+            font-weight: bold;
+            pointer-events: none; /* Ensure it does not interfere with other interactions */
+            z-index: 9999;
+            user-select: none; /* Disable selection of the watermark */
+        }
+
+        /* Ensuring the watermark is visible in print */
+        @media print {
+            .watermark {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(-45deg);
+                color: rgba(0, 123, 255, 0.1); /* Adjust opacity for print */
+                pointer-events: none;
+                font-size: 6rem; /* Slightly larger for printing */
+            }
+        }
     </style>
     
 </head>
 <body class="bg-white-100 p-4 md:p-8">
 
+    <div class="watermark">PEAK AFRICA CONSULTANTS</div>
 
 
     <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6">
