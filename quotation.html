@@ -182,6 +182,51 @@
             <p>This is a computer generated quotation and does not require signature</p>
             <p>Thank you for your business! </p>
         </div>
+
+
+
+        <style>
+       .signature-section {
+    position: absolute;
+    bottom:-470px;  /* Adjust the distance from the bottom */
+    left: 20px;    /* Adjust the distance from the left */
+    z-index: 1000; /* Ensure it's above other elements */
+    text-align: left;  /* Align text left */
+}
+
+.signature-image {
+    width: 150px;  /* Set the size of the signature image */
+    height: auto;
+}
+
+.signature-name {
+    font-family: 'Arial', sans-serif;  /* Choose a professional font */
+    font-size: 14px;  /* Adjust size as needed */
+    color: #333;      /* Set text color */
+    margin-top: 5px;  /* Space between the signature and text */
+    font-weight: bold; /* Optional, to make the name stand out */
+}
+
+@media print {
+            .signature-section {
+                display: block;
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #ccc;
+            }
+        }
+        </style>
+ <!-- Signature Section moved here -->
+            <div class="signature-section">
+                <img src="assets/ceo-signature-removebg-preview.png" alt="Signature" class="signature-image">
+                <p class="signature-name">CEO, Peak Africa Consultants Ltd</p>
+            </div>
+
+        
+
     </div>
 </div>
         <button onclick="window.print()" class="no-print bg-green-500 text-white px-6 py-3 rounded-lg mt-6">Save as PDF</button>
