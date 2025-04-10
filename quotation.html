@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale:1.0, user-scalable=no">
+    <link rel="icon" href="assets/icons/cropped-brd2-peak_logos-dark-removebg-preview.png">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Thank you for choosing us.</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+        .hover-no:hover{
+            border: none !important;
+            outline: none !important;
+        }
+        .transparent-editable {
+  outline: none;
+  border: none;
+}
+.transparent-editable:focus,
+.transparent-editable:hover {
+  outline: none !important;
+  border: none !important;
+}
+
+    </style>
+    
+</head>
+<body class="bg-white-100 p-4 md:p-8">
+
+
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6">
+        <!-- Header -->
+        <div class="text-center mb-6">
+            <img style="width: 180px;" src="assets/brd2-peak_logos-dark-removebg-preview.png" alt="Logo" class="mx-auto mb-4">
+            <h1 class="text-3xl font-bold">QUOTATION</h1>
+        </div>
+
+      <!-- Company Info -->
+<div class="mb-6 outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" contenteditable="true">
+    <p class="text-xl font-bold">Peak Africa</p>
+    <div class="mb-2 editable" contenteditable="true" data-placeholder="Street Address, Nairobi, Kenya"></div>
+    <p>Phone: +254 743 106 363</p>
+</div>
+
+<!-- Quotation Info -->
+<div class="flex justify-between mb-6">
+    <div contenteditable="true" class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none">
+        <strong>Quote Number:</strong>         <input class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" type="text" placeholder="PA-001"><br>
+
+        <strong>Date:</strong>  <input class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" type="date" placeholder="Enter Date"><br>
+    </div>
+</div>
+
+<!-- Client Info -->
+<div class="mb-6 outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" contenteditable="true">
+    <p class="font-bold">Quote To:</p>
+<input class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" type="text" placeholder="Client Name"><br>
+<input class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" type="text" placeholder="Client Address"><br>
+<input class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" type="text" placeholder="Client Phone">
+</div>
+
+
+        <!-- Table -->
+        <table class="w-full mb-6">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="text-left p-2">Item</th>
+                    <th class="text-left p-2">Rate (KES)</th>
+                    <th class="text-left p-2">Quantity</th>
+                    <th class="text-left p-2">Total</th>
+                </tr>
+            </thead>
+            <tbody id="items">
+                <tr>
+                    <td class="p-2">
+                        <div contenteditable="true" class="editable-field outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none">Item Name</div>
+                    </td>
+                    <td class="p-2">
+                        <div contenteditable="true" class="editable-field numeric outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" data-type="rate">0.00</div>
+                    </td>
+                    <td class="p-2">
+                        <div contenteditable="true" class="editable-field numeric outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" data-type="quantity">1</div>
+                    </td>
+                    <td class="p-2">
+                        <div class="total" data-type="total">0.00</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick="addRow()" class="no-print bg-blue-500 text-white px-4 py-2 rounded mb-6">Add Row</button>
+
+        <!-- Totals -->
+        <div class="text-right">
+            <p class="mb-2"><strong>Subtotal:</strong> <span id="subtotal">0.00</span> KES</p>
+            <div class="mb-2">
+                <strong style="color: #007bff;">Discount:</strong> 
+                <span id="discount" contenteditable="true" class="transparent-editable">0.00</span>
+            </div>
+            <div class="mb-2">
+                <strong style="color: #007bff;">Tax:</strong> 
+                <span id="tax" contenteditable="true" class="transparent-editable">0.00</span>
+            </div>
+            
+            <p class="text-xl font-bold" style="color: #1a1818;">TOTAL: <span style="color: #1a1818;" id="grandTotal">0.00</span> KES</p>
+        </div>
+
+      <!-- Footer -->
+<div class="mt-8 text-sm text-gray-500 outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" contenteditable="true">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t pt-4">
+        <div>
+            <p class="font-semibold mb-2">Payment Instructions:</p>
+            <p>M-Pesa Paybill: 123456</p>
+            <p>Account Name: Peak Africa Limited</p>
+            <p>Bank Transfer: Kenya Commercial Bank</p>
+            <p>Account No: 0112345678900</p>
+            <p>Branch: Westlands</p>
+            <p>SWIFT: KCBLKENX</p>
+        </div>
+        
+        <div>
+            <p class="font-semibold mb-2">Company Details:</p>
+            <p>Physical Address: ABC Tower, 5th Floor, Westlands, Nairobi</p>
+            <p>Email: info@peakafricaconsultants.com</p>
+            <p>Website: www.peakafricaconsultants.com</p>
+            <p>VAT No: P000123456M</p>
+            <p>Business Reg: CPR/2022/126344</p>
+        </div>
+    </div>
+
+    <div class="mt-4 pt-4 border-t">
+        <p class="font-semibold">Terms & Conditions:</p>
+        <ul class="list-disc pl-5">
+            <li>Quotation valid for 30 days from date of issue</li>
+            <li>Payment due within 7 days of invoice date</li>
+            <li>Prices subject to change without notice</li>
+            <li>Delivery ex-works unless otherwise stated</li>
+        </ul>
+        
+        <p class="mt-3">* Prices include VAT where applicable</p>
+        <p class="mt-2">* ETR Receipts provided for all M-Pesa payments</p>
+        
+        <div class="mt-4 italic">
+            <p>This is a computer generated quotation and does not require signature</p>
+            <p>Thank you for your business! </p>
+        </div>
+    </div>
+</div>
+        <button onclick="window.print()" class="no-print bg-green-500 text-white px-6 py-3 rounded-lg mt-6">Save as PDF</button>
+    </div>
+
+
+    <script>
+        function getTransactionCost(amount) {
+            amount = Number(amount);
+            if (amount <= 100) return 0;
+            if (amount <= 500) return 11;
+            if (amount <= 1000) return 29;
+            if (amount <= 1500) return 47;
+            if (amount <= 2500) return 61;
+            if (amount <= 3500) return 77;
+            if (amount <= 5000) return 89;
+            return 167;
+        }
+
+        function calculateRowTotal(row) {
+            const rate = parseFloat(row.querySelector('[data-type="rate"]').textContent) || 0;
+            const quantity = parseFloat(row.querySelector('[data-type="quantity"]').textContent) || 0;
+            const transactionCost = getTransactionCost(rate);
+            const total = (rate + transactionCost) * quantity;
+            row.querySelector('[data-type="total"]').textContent = total.toFixed(2);
+            return total;
+        }
+        function updateTotals() {
+    let subtotal = 0;
+    document.querySelectorAll('#items tr').forEach(row => {
+        subtotal += calculateRowTotal(row);
+    });
+
+    document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+
+    const discount = parseFloat(document.getElementById('discount').textContent) || 0;
+    const tax = parseFloat(document.getElementById('tax').textContent) || 0;
+
+    const totalAfterDiscount = subtotal - discount;
+    const grandTotal = totalAfterDiscount + tax;
+
+    document.getElementById('grandTotal').textContent = grandTotal.toFixed(2);
+}
+
+        function addRow() {
+            const newRow = document.querySelector('#items tr').cloneNode(true);
+            newRow.querySelectorAll('.editable-field').forEach(field => {
+                field.textContent = field.classList.contains('numeric') ? '1' : 'New Item';
+            });
+            newRow.querySelector('.total').textContent = '0.00';
+            document.getElementById('items').appendChild(newRow);
+            addEventListeners(newRow);
+        }
+
+        function addEventListeners(row) {
+            row.querySelectorAll('.editable-field').forEach(field => {
+                field.addEventListener('input', updateTotals);
+            });
+        }
+
+        // Add event listeners to discount and tax fields
+        document.querySelectorAll('.text-right [contenteditable="true"]').forEach(el => {
+            el.addEventListener('input', updateTotals);
+        });
+
+        // Initial setup
+        document.querySelectorAll('#items tr').forEach(row => {
+            addEventListeners(row);
+        });
+        updateTotals();
+    </script>
+</body>
+</html>

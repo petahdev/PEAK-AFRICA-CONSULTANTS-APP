@@ -1,0 +1,21 @@
+{
+  "name": "Peak Africa",
+  "short_name": "Peak Africa",
+  "description": "Customer management App",
+  "start_url": "/",
+  "display": "standalone", 
+  "background_color": "#000",
+  "theme_color": "#fff",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/Pi7_Asenass-favicon-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="assets/icons/cropped-brd2-peak_logos-dark-removebg-preview.png">
+        <title>Peak Africa Currency & Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @media(min-width:768px){
+            .container{
+                margin-top: 100px !important;
+            }
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .logo-img {
+            width: 180px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 80px; /* Space for the logo */
+        }
+        .output {
+            background-color: #f1f1f1;
+            padding: 20px;
+            font-size: 36px;
+            text-align: right;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-height: 80px;
+            color: #333;
+        }
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .calc-buttons button {
+            padding: 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .calc-buttons button:active {
+            background-color: #0056b3;
+        }
+        .calc-buttons button.clear {
+            background-color: #dc3545;
+        }
+        .calc-buttons button.equals {
+            background-color: #28a745;
+            grid-column: span 4; /* Makes the button span the entire width */
+        }
+        .calc-buttons button.equals:active {
+            background-color: #218838;
+        }
+        .calc-buttons button.clear:active {
+            background-color: #c82333;
+        }
+        .currency-selector, .currency-amount {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .currency-result {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img style="width: 140px;" src="assets/brd2-peak_logos-dark-removebg-preview.png" alt="Logo" class="logo-img">
+
+    <div class="container">
+        <!-- Calculator Output -->
+        <div class="output" id="calc-output">0</div>
+
+        <!-- Calculator Buttons -->
+        <div class="calc-buttons">
+            <button onclick="appendToOutput('7')">7</button>
+            <button onclick="appendToOutput('8')">8</button>
+            <button onclick="appendToOutput('9')">9</button>
+            <button onclick="appendToOutput('/')">/</button>
+
+            <button onclick="appendToOutput('4')">4</button>
+            <button onclick="appendToOutput('5')">5</button>
+            <button onclick="appendToOutput('6')">6</button>
+            <button onclick="appendToOutput('*')">*</button>
+
+            <button onclick="appendToOutput('1')">1</button>
+            <button onclick="appendToOutput('2')">2</button>
+            <button onclick="appendToOutput('3')">3</button>
+            <button onclick="appendToOutput('-')">-</button>
+
+            <button onclick="appendToOutput('0')">0</button>
+            <button onclick="clearOutput()" class="clear">C</button>
+            <button onclick="appendToOutput('.')">.</button>
+            <button onclick="appendToOutput('+')">+</button>
+        </div>
+
+        <!-- Equals Button -->
+        <button style="padding: 15px; width: 100%; margin-top: 10px; background-color: red; color: #fff; border-radius: 5px; border: none;" onclick="calculateResult()" class="equals">=</button>
+
+        <!-- Currency Conversion Section -->
+        <h3 class="mt-8 text-center font-semibold text-lg">Currency Converter</h3>
+
+        <select id="currency-from" class="currency-selector" onchange="convertCurrency()">
+            <option value="KES">Kenyan Shilling (KES)</option>
+            <option value="USD">US Dollar (USD)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <option value="GBP">British Pound (GBP)</option>
+            <option value="INR">Indian Rupee (INR)</option>
+            <option value="JPY">Japanese Yen (JPY)</option>
+            <option value="AUD">Australian Dollar (AUD)</option>
+            <option value="CAD">Canadian Dollar (CAD)</option>
+            <option value="CHF">Swiss Franc (CHF)</option>
+            <option value="ZAR">South African Rand (ZAR)</option>
+        </select>
+
+        <input style="outline: none; box-shadow: none; width: 93%;" type="number" id="currency-amount" class="currency-amount" placeholder="Enter amount" oninput="convertCurrency()">
+        
+        <div id="currency-result" class="currency-result">0</div>
+    </div>
+
+    <script>
+        let currentOperation = "";
+
+        // Function to append number or operator to the output
+        function appendToOutput(value) {
+            if (currentOperation === "0") {
+                currentOperation = value;
+            } else {
+                currentOperation += value;
+            }
+            document.getElementById("calc-output").textContent = currentOperation;
+        }
+
+        // Function to clear the output
+        function clearOutput() {
+            currentOperation = "";
+            document.getElementById("calc-output").textContent = "0";
+        }
+
+        // Function to calculate the result
+        function calculateResult() {
+            try {
+                currentOperation = eval(currentOperation).toString();
+                document.getElementById("calc-output").textContent = currentOperation;
+            } catch (e) {
+                document.getElementById("calc-output").textContent = "Error";
+                currentOperation = "";
+            }
+        }
+
+        // Hardcoded exchange rates
+        const exchangeRates = {
+            "KES": 1, // Kenyan Shilling to KES is always 1
+            "USD": 0.0067,
+            "EUR": 0.0061,
+            "GBP": 0.0051,
+            "INR": 0.55,
+            "JPY": 0.73,
+            "AUD": 0.010,
+            "CAD": 0.0091,
+            "CHF": 0.0061,
+            "ZAR": 0.124,
+        };
+
+        // Function to convert currency
+        function convertCurrency() {
+            const fromCurrency = document.getElementById("currency-from").value;
+            const amount = parseFloat(document.getElementById("currency-amount").value);
+
+            if (isNaN(amount) || amount === "") {
+                document.getElementById("currency-result").textContent = "0";
+                return;
+            }
+
+            const convertedAmount = amount * exchangeRates[fromCurrency];
+            document.getElementById("currency-result").textContent = `${convertedAmount.toFixed(2)} ${fromCurrency}`;
+        }
+    </script>
+
+</body>
+</html>

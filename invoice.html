@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="assets/icons/cropped-brd2-peak_logos-dark-removebg-preview.png">
+    <title>Peak Africa Consultants Invoice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+        .transparent-editable {
+            outline: none;
+            border: none;
+            min-width: 80px;
+        }
+        .transparent-editable:focus,
+        .transparent-editable:hover {
+            outline: none !important;
+            border: none !important;
+        }
+    </style>
+</head>
+<body class="bg-white-100 p-4 md:p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6">
+        <!-- Header -->
+        <div class="text-center mb-6">
+            <img style="width: 180px;" src="assets/brd2-peak_logos-dark-removebg-preview.png" alt="Logo" class="mx-auto mb-4">
+            <h1 class="text-3xl font-bold">INVOICE</h1>
+        </div>
+
+        <!-- Company Info -->
+        <div class="mb-6">
+            <p class="text-xl font-bold">Peak Africa Consultants</p>
+            <input class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" style="width: 100%;" type="text" placeholder="ABC Tower, 5th Floor, Westlands, Nairobi"><br>
+            <input class="outline-none border-none focus:outline-none focus:border-none hover:outline-none hover:border-none" style="width: 100%;" type="text" placeholder="VAT No: P000123456M | Tel: +254 743 106 363"><br>
+        </div>
+
+        <!-- Invoice Info -->
+        <div class="flex justify-between mb-6">
+            <div>
+                <strong>Invoice Number:</strong><input class="outline-none border-none" style="width: 100%;" type="text" placeholder="PA-INV-001">
+                <strong>Date:</strong> <input class="outline-none border-none" style="width: auto;" type="date"><br>
+                <strong>Due Date:</strong>  <input class="outline-none border-none" style="width: auto;" type="date"><br>
+            </div>
+            <div>
+                <p class="font-bold">Bill To:</p>
+                <input class="outline-none border-none" type="text" placeholder="Client Name"><br>
+                <input class="outline-none border-none" type="text" placeholder="Client Phone"><br>       
+                <input class="outline-none border-none" type="text" placeholder="Client Address">     
+            </div>
+        </div>
+
+        <!-- Items Table -->
+        <table class="w-full mb-6">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="text-left p-2">Description</th>
+                    <th class="text-left p-2">Rate (KES)</th>
+                    <th class="text-left p-2">Qty</th>
+                    <th class="text-left p-2">Total</th>
+                </tr>
+            </thead>
+            <tbody id="items">
+                <tr>
+                    <td class="p-2">
+                        <div contenteditable="true" class="transparent-editable">Consulting Service</div>
+                    </td>
+                    <td class="p-2">
+                        <div contenteditable="true" class="transparent-editable numeric" data-type="rate">5000.00</div>
+                    </td>
+                    <td class="p-2">
+                        <div contenteditable="true" class="transparent-editable numeric" data-type="quantity">1</div>
+                    </td>
+                    <td class="p-2">
+                        <div class="total" data-type="total">5000.00</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick="addRow()" class="no-print bg-blue-500 text-white px-4 py-2 rounded mb-6">Add Item</button>
+
+        <!-- Calculations -->
+        <div class="text-right space-y-2">
+            <div class="flex justify-end">
+                <div class="w-64">
+                    <div class="flex justify-between">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">5000.00</span>
+                    </div>
+
+                    <!-- Discount input field -->
+                    <div class="flex justify-between">
+                        <span>Discount:</span>
+                        <input type="number" id="discount" value="0.00" class="transparent-editable w-20" oninput="calculateTotals()" style="text-align:right;">
+                    </div>
+
+                    <!-- Tax input field -->
+                    <div class="flex justify-between">
+                        <span>Tax (1%):</span>
+                        <input type="number" id="tax" value="800.00" class="transparent-editable w-20" oninput="calculateTotals()" style="text-align:right;">
+                    </div>
+
+                    <!-- Grand total section -->
+                    <div class="flex justify-between font-bold mt-2 border-t pt-2">
+                        <span>TOTAL:</span>
+                        <span id="grandTotal">5800.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Terms -->
+        <div class="mt-8 border-t pt-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <p class="font-semibold mb-2">Payment Instructions:</p>
+                    <p>Bank: Kenya Commercial Bank</p>
+                    <p>Account: 0112345678900</p>
+                    <p>SWIFT: KCBLKENX</p>
+                    <p>MPesa Paybill: 123456</p>
+                </div>
+                <div>
+                    <p class="font-semibold mb-2">Payment Terms:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Payment due within 7 days</li>
+                        <li>Late payment fee: 2% per month</li>
+                        <li>ETR receipts provided</li>
+                        <li>Cheques payable to Peak Africa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-4 border-t">
+                <p class="italic text-sm">This invoice is computer generated and valid without signature. Please notify us immediately of any discrepancies. Goods/services remain property of Peak Africa Consultants until full payment is received.</p>
+                <div class="mt-4 bg-blue-50 p-3 rounded">
+                    <p class="font-semibold text-blue-800">❗ Payment Reminder:</p>
+                    <p>Kindly settle payment by the due date to maintain uninterrupted service and avoid late fees. For payment queries, contact info@peakafricaconsultants.com</p>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="window.print()" class="no-print bg-green-500 text-white px-6 py-3 rounded-lg mt-6">Save as PDF</button>
+    </div>
+
+    <script>
+        function calculateTotals() {
+            let subtotal = 0;
+            
+            // Calculate row totals
+            document.querySelectorAll('#items tr').forEach(row => {
+                const rate = parseFloat(row.querySelector('[data-type="rate"]').textContent) || 0;
+                const quantity = parseFloat(row.querySelector('[data-type="quantity"]').textContent) || 0;
+                const total = rate * quantity;
+                row.querySelector('[data-type="total"]').textContent = total.toFixed(2);
+                subtotal += total;
+            });
+
+            // Apply discount and tax
+            const discount = parseFloat(document.getElementById('discount').value) || 0;
+            const taxRate = 0.01;
+            const taxableAmount = subtotal - discount;
+            const tax = taxableAmount * taxRate;
+            
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('tax').value = tax.toFixed(2);
+            document.getElementById('grandTotal').textContent = (taxableAmount + tax).toFixed(2);
+        }
+
+        function addRow() {
+            const newRow = document.querySelector('#items tr').cloneNode(true);
+
+            // Reset content of cloned row
+            newRow.querySelectorAll('[data-type="rate"], [data-type="quantity"]').forEach(field => {
+                if (field.type === "number") {
+                    field.value = 1;  // Default value for rate and quantity
+                } else {
+                    field.value = "New Item";  // Default text for description
+                }
+            });
+
+            // Reset total field
+            newRow.querySelector('[data-type="total"]').textContent = "0.00";
+
+            // Append the new row to the table
+            document.getElementById('items').appendChild(newRow);
+
+            // Add event listeners for the inputs in the new row
+            addRowListeners(newRow);
+
+            // Update totals
+            calculateTotals();
+        }
+
+        function addRowListeners(row) {
+            row.querySelectorAll('[data-type="rate"], [data-type="quantity"]').forEach(input => {
+                input.addEventListener('input', calculateTotals);  // Trigger recalculation on input change
+            });
+        }
+
+        // Initialize
+        document.querySelectorAll('[contenteditable]').forEach(field => {
+            field.addEventListener('input', calculateTotals);
+        });
+
+        document.getElementById('discount').addEventListener('input', calculateTotals);
+        calculateTotals();
+    </script>
+</body>
+</html>
