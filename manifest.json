@@ -1,19 +1,19 @@
 {
-  "name": "Peak Africa",
-  "short_name": "Peak Africa",
+  "name": "Asenass",
+  "short_name": "Asenass",
   "description": "Customer management App",
   "start_url": "/",
   "display": "standalone", 
-  "background_color": "#000",
+  "background_color": "#fff",
   "theme_color": "#fff",
   "icons": [
     {
-      "src": "/assets/icons/icon-192x192.png",
+      "src": "/assets/icons/asenass-favicon.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/assets/icons/Pi7_Asenass-favicon-removebg-preview.png",
+      "src": "/assets/icons/asenass-favicon.png",
       "sizes": "512x512",
       "type": "image/png"
     }

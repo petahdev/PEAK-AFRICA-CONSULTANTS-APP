@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asenass Service Code Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body class="bg-white min-h-screen flex items-center justify-center p-6">
+    <div class="bg-white  rounded-2xl max-w-md w-full p-8 text-center">
+        <!-- Lottie Animation -->
+        <lottie-player src="verify-scan-user.json" background="transparent" speed="1"
+            style="width: 100%; height: 100%; margin: auto;" loop autoplay></lottie-player>
+
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Asenass Service Code Generator</h1>
+        <p class="text-gray-600 mb-6">Click the button below to generate a memorable but unique 6-digit service code
+            starting with <strong>78</strong>.</p>
+
+        <button onclick="generateCode()"
+            class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-xl transition-all">Generate
+            Code</button>
+
+        <div id="result" class="mt-6 text-xl font-mono text-gray-800"></div>
+    </div>
+
+    <script>
+        const usedCodes = new Set();
+
+        function generateEasyMemorableCode() {
+            // Uses patterns like repeating digits, palindromes, mirrored patterns, step values
+            const patterns = [
+                () => Math.floor(Math.random() * 9 + 1) * 1001,       // 1001, 2002...9009 (palindromes)
+                () => {
+                    const base = Math.floor(Math.random() * 9 + 1);
+                    return parseInt(`${base}${base}${base}${base}`); // 1111, 2222...
+                },
+                () => {
+                    const base = Math.floor(Math.random() * 90 + 10);
+                    return parseInt(`${base}${[...base.toString()].reverse().join('')}`); // mirror like 123321
+                },
+                () => {
+                    const a = Math.floor(Math.random() * 9 + 1);
+                    return parseInt(`${a}${a + 1}${a + 2}${a + 3}`); // stepping like 1234, 4567
+                },
+                () => Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000 // fallback random
+            ];
+
+            let suffix;
+            let attempts = 0;
+            do {
+                suffix = patterns[Math.floor(Math.random() * patterns.length)]();
+                attempts++;
+            } while ((suffix > 9999 || usedCodes.has(suffix)) && attempts < 20);
+
+            usedCodes.add(suffix);
+            return suffix;
+        }
+
+        function generateCode() {
+            const suffix = generateEasyMemorableCode();
+            const fullCode = `78${suffix}`;
+            document.getElementById('result').textContent = `🔐 Your Service Number: ${fullCode}`;
+        }
+    </script>
+</body>
+
+</html>

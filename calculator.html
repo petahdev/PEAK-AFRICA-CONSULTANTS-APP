@@ -5,8 +5,8 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="assets/icons/cropped-brd2-peak_logos-dark-removebg-preview.png">
-        <title>Peak Africa Currency & Calculator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <title>Asenass Developers Currency & Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         @media(min-width:768px){
             .container{
@@ -14,7 +14,7 @@
             }
         }
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Jost', sans-serif;
             background-color: #fff;
             margin: 0;
             padding: 0;
@@ -47,7 +47,7 @@
             border-radius: 10px;
             margin-bottom: 20px;
             min-height: 80px;
-            color: #333;
+            color: #343d3f;
         }
         .calc-buttons {
             display: grid;
@@ -58,7 +58,7 @@
             padding: 20px;
             font-size: 20px;
             border-radius: 10px;
-            background-color: #007bff;
+            background-color: #343d3f;
             color: white;
             border: none;
             cursor: pointer;
@@ -68,17 +68,17 @@
             background-color: #0056b3;
         }
         .calc-buttons button.clear {
-            background-color: #dc3545;
+            background-color: #f44336;
         }
         .calc-buttons button.equals {
-            background-color: #28a745;
+            background-color: #22c55e;
             grid-column: span 4; /* Makes the button span the entire width */
         }
         .calc-buttons button.equals:active {
-            background-color: #218838;
+            background-color: #22c55e;
         }
         .calc-buttons button.clear:active {
-            background-color: #c82333;
+            background-color: #f44336;
         }
         .currency-selector, .currency-amount {
             width: 100%;
@@ -94,14 +94,14 @@
             text-align: center;
             margin-top: 20px;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #f44336;
             color: white;
             border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <img style="width: 140px;" src="assets/brd2-peak_logos-dark-removebg-preview.png" alt="Logo" class="logo-img">
+    <img style="width: 150px;" src="assets/2-removebg-preview.png" alt="Logo" class="logo-img">
 
     <div class="container">
         <!-- Calculator Output -->
@@ -131,7 +131,7 @@
         </div>
 
         <!-- Equals Button -->
-        <button style="padding: 15px; width: 100%; margin-top: 10px; background-color: red; color: #fff; border-radius: 5px; border: none;" onclick="calculateResult()" class="equals">=</button>
+        <button style="padding: 15px; width: 100%; margin-top: 10px; background-color: #22c55e; color: #fff; border-radius: 5px; border: none;" onclick="calculateResult()" class="equals">=</button>
 
         <!-- Currency Conversion Section -->
         <h3 class="mt-8 text-center font-semibold text-lg">Currency Converter</h3>

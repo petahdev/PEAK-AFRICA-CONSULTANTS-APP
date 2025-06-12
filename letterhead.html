@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional letterhead from Asenass Developers for official correspondence.">
+  <meta name="keywords" content="letterhead, Asenass Developers, professional correspondence, Nairobi tech solutions">
+  <meta name="author" content="Asenass Developers">
+  <link rel="icon" href="assets/icons/cropped-brd2-peak_logos-dark-removebg-preview.png" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/icons/cropped-brd2-peak_logos-dark-removebg-preview.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Professional Letterhead | Asenass Developers</title>
+  <style>
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: #ffffff;
+      color: #1f2937;
+      margin: 0;
+      padding: 0;
+    }
+
+    .letterhead-container {
+      max-width: 210mm;
+      /* A4 width */
+      margin: 0 auto;
+      padding: 2cm;
+      min-height: 297mm;
+      /* A4 height */
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    @media screen and (max-width: 640px) {
+      .letterhead-container {
+        padding: 1rem;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .letterhead-container {
+        padding: 2cm;
+        min-height: auto;
+      }
+
+      .print-button {
+        display: none !important;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      .bottom-ribbon {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+
+    .top-ribbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(90deg, #f44336 0%, #d32f2f 100%);
+      z-index: 1;
+    }
+
+    .bottom-ribbon {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(90deg, #f44336 0%, #d32f2f 100%);
+      z-index: 1;
+    }
+
+    [contenteditable="true"]:focus {
+      outline: none;
+      background: #f9fafb;
+      transition: background-color 0.3s ease;
+    }
+
+    .logo-placeholder {
+      background-image: url("assets/2-removebg-preview.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .signature-placeholder {
+      background-image: url("assets/SALES-SIGNATURE.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left center;
+    }
+
+    .watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(49, 49, 49, 0.1);
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+
+    @media print {
+      .watermark {
+        font-size: 6rem;
+      }
+    }
+
+    .content-section {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="watermark">ASENASS DEVELOPERS</div>
+  <div class="letterhead-container">
+    <!-- Top Ribbon 
+    <div class="top-ribbon"></div>
+-->
+    <div class="content-section">
+      <!-- Header Section -->
+      <div class="mb-12 pt-16">
+        <div class="flex flex-col sm:flex-row justify-between items-start mb-8 gap-4">
+          <!-- Logo -->
+          <div class="logo-placeholder w-48 h-24"></div>
+          <!-- Contact Info -->
+          <div contenteditable="true" class="text-right space-y-2 text-sm text-gray-600">
+            <div class="text-lg font-semibold text-[#f44336] mb-2">DEVELOPING TOMORROW TODAY</div>
+            <div class="flex items-center justify-end gap-2">
+              <i class="fas fa-phone-alt text-[#f44336]"></i>
+              <p>+254 740 744 765</p>
+            </div>
+            <div class="flex items-center justify-end gap-2">
+              <i class="fas fa-envelope text-[#f44336]"></i>
+              <p>info@asenass.com</p>
+            </div>
+            <div class="flex items-center justify-end gap-2">
+              <i class="fas fa-globe text-[#f44336]"></i>
+              <p>www.asenass.com</p>
+            </div>
+          </div>
+        </div>
+        <div contenteditable="true" class="text-sm text-gray-600 text-center border-t border-b border-gray-300 py-3">
+          <p>ABC Tower, 5th Floor, Westlands, Nairobi, Kenya</p>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="space-y-8">
+        <!-- Sender and Date -->
+        <div contenteditable="true" class="flex flex-col sm:flex-row justify-between text-sm gap-4">
+          <div class="space-y-1">
+            <p class="font-semibold text-lg text-gray-900">Peter Mutitu</p>
+            <p class="text-[#f44336] font-medium">Senior Manager</p>
+            <p>Business Street 123, Nairobi</p>
+          </div>
+          <div id="date-container" class="text-right">
+            <label for="letter-date" class="hidden">Select Date</label>
+            <input type="date" id="letter-date" class="text-gray-900 border px-2 py-1 rounded"
+              onchange="formatSelectedDate(this)" />
+          </div>
+          
+          <script>
+            function formatSelectedDate(input) {
+              const date = new Date(input.value);
+              if (isNaN(date)) return;
+
+              const options = { day: '2-digit', month: 'long', year: 'numeric' };
+              const formattedDate = date.toLocaleDateString('en-US', options);
+
+              const container = document.getElementById('date-container');
+              container.innerHTML = `
+                          <p class="text-gray-900"><strong>Date:</strong> <span class="ml-2">${formattedDate}</span></p>
+                        `;
+            }
+          </script>
+          
+        </div>
+
+        <!-- Recipient Info -->
+        <div contenteditable="true" class="text-sm space-y-2 mb-8">
+          <p class="font-semibold text-gray-900">To:</p>
+          <p class="font-medium text-gray-900">[Client Name]</p>
+          <p>[Company Name]</p>
+          <p>[Street Address]</p>
+          <p>[City, State ZIP Code]</p>
+        </div>
+
+        <!-- Letter Body -->
+        <div contenteditable="true" class="text-sm leading-relaxed space-y-4 mb-12 text-gray-700">
+          <p class="first-letter:ml-6 first-letter:text-[#f44336] first-letter:font-bold first-letter:text-lg">
+            Dear [Client Name],
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.
+          </p>
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+          </p>
+          <p>
+            Please feel free to contact us at +254 740 744 765 or info@asenass.com for any further information.
+          </p>
+        </div>
+
+        <!-- Signature Section -->
+        <div class="mt-16">
+          <div contenteditable="true" class="mb-4 text-[#f44336] font-medium">Yours Sincerely,</div>
+          <div class="flex items-center gap-6">
+            <div class="signature-placeholder w-48 h-16"></div>
+            <div contenteditable="true" class="space-y-1">
+              <p class="font-semibold text-lg text-gray-900">Precious Mikisa</p>
+              <p class="text-[#f44336] font-medium">Sales Manager, Asenass Developers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Ribbon -->
+    
+  </div>
+
+  <!-- Print Button -->
+  <div class="text-center my-8 print-button">
+    <button
+      class="bg-[#f44336] text-white px-8 py-3 rounded-lg hover:bg-[#d32f2f] transition-all duration-300 font-semibold"
+      onclick="window.print()">
+      PRINT DOCUMENT
+    </button>
+  </div>
+</body>
+
+</html>
